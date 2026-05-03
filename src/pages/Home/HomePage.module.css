@@ -1,16 +1,17 @@
 .page {
   background:
-    linear-gradient(180deg, rgba(139, 92, 246, 0.05), transparent 28rem),
+    radial-gradient(circle at top right, rgba(245, 158, 11, 0.12), transparent 32%),
+    radial-gradient(circle at top left, rgba(139, 92, 246, 0.12), transparent 30%),
     var(--color-background);
   min-height: 100vh;
 }
 
 .section {
-  padding: clamp(2.75rem, 6vw, 5rem) 0;
+  padding: clamp(2.4rem, 6vw, 5rem) 0;
 }
 
 .bannerSection {
-  padding: 1rem 0 clamp(2.75rem, 6vw, 5rem);
+  padding: 0.5rem 0 clamp(2.4rem, 6vw, 5rem);
 }
 
 .brandGrid {
@@ -21,8 +22,15 @@
 
 .productGrid {
   display: grid;
-  gap: 1rem;
+  gap: 1.15rem;
   grid-template-columns: repeat(4, minmax(0, 1fr));
+}
+
+@media (max-width: 1199px) {
+  .brandGrid,
+  .productGrid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
 }
 
 @media (max-width: 991px) {
@@ -33,10 +41,11 @@
 }
 
 @media (max-width: 575px) {
-  .brandGrid {
-    grid-template-columns: 1fr;
+  .section {
+    padding: 2rem 0;
   }
 
+  .brandGrid,
   .productGrid {
     grid-template-columns: 1fr;
   }
