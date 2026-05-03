@@ -1,0 +1,81 @@
+.page {
+  padding-bottom: 4rem;
+}
+
+.form {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: 8px;
+  display: grid;
+  gap: 1.25rem;
+  margin: 0 auto;
+  max-width: 48rem;
+  padding: 1.25rem;
+}
+
+.form section {
+  border-bottom: 1px solid var(--color-border);
+  display: grid;
+  gap: 0.75rem;
+  padding-bottom: 1.25rem;
+}
+
+.form h2 {
+  font-size: 1rem;
+  font-weight: 900;
+  margin: 0;
+  text-transform: uppercase;
+}
+
+.form input[type="text"],
+.form input[type="email"],
+.form input[type="tel"],
+.form textarea {
+  border: 1px solid var(--color-border);
+  border-radius: 8px;
+  padding: 0.8rem 0.9rem;
+}
+
+.form textarea {
+  min-height: 7rem;
+  resize: vertical;
+}
+
+.form label {
+  color: var(--color-muted);
+}
+
+.inlineGroup {
+  display: grid;
+  gap: 0.75rem;
+  grid-template-columns: minmax(0, 1fr) auto;
+}
+
+.inlineGroup button {
+  background: var(--color-primary);
+  border: 0;
+  border-radius: 8px;
+  color: #ffffff;
+  font-weight: 900;
+  padding: 0 1rem;
+}
+
+.message {
+  background: var(--color-background);
+  border: 1px solid var(--color-border);
+  border-radius: 8px;
+  color: var(--color-muted);
+  font-weight: 800;
+  margin: 0;
+  padding: 0.75rem;
+}
+
+@media (max-width: 575px) {
+  .inlineGroup {
+    grid-template-columns: 1fr;
+  }
+
+  .inlineGroup button {
+    min-height: 2.75rem;
+  }
+}

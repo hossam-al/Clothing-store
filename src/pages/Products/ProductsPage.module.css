@@ -1,0 +1,157 @@
+.eyebrow {
+  color: var(--color-highlight-orange);
+  display: inline-block;
+  font-weight: 900;
+  margin-bottom: 0.5rem;
+  text-transform: uppercase;
+}
+
+.shopSection {
+  padding-bottom: 4rem;
+}
+
+.shopLayout {
+  align-items: start;
+  display: grid;
+  gap: 1.25rem;
+  grid-template-columns: 17rem minmax(0, 1fr);
+}
+
+.filters,
+.toolbar {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: 8px;
+}
+
+.filters {
+  padding: 1.25rem;
+  position: sticky;
+  top: 6rem;
+}
+
+.filters h2 {
+  font-size: 1.2rem;
+  font-weight: 900;
+  margin-bottom: 1rem;
+  text-transform: uppercase;
+}
+
+.filterGroup {
+  border-top: 1px solid var(--color-border);
+  padding: 1rem 0;
+}
+
+.filterGroup h3 {
+  font-size: 0.85rem;
+  font-weight: 900;
+  margin-bottom: 0.75rem;
+  text-transform: uppercase;
+}
+
+.filterGroup label {
+  color: var(--color-muted);
+  display: block;
+  margin-bottom: 0.5rem;
+}
+
+.chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.chips button,
+.pagination button,
+.clearButton {
+  background: #ffffff;
+  border: 1px solid var(--color-border);
+  border-radius: 8px;
+  color: var(--color-primary);
+  font-weight: 800;
+  padding: 0.45rem 0.7rem;
+}
+
+.toolbar {
+  align-items: center;
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 1.25rem;
+  padding: 1rem;
+}
+
+.toolbar span {
+  color: var(--color-muted);
+  font-weight: 800;
+}
+
+.toolbar select {
+  border: 1px solid var(--color-border);
+  border-radius: 8px;
+  padding: 0.55rem 0.75rem;
+}
+
+.productGrid {
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+}
+
+.status {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: 8px;
+  color: var(--color-muted);
+  font-weight: 800;
+  margin: 0 0 1rem;
+  padding: 0.8rem 1rem;
+}
+
+.pagination {
+  display: flex;
+  gap: 0.5rem;
+  justify-content: center;
+  margin-top: 2rem;
+}
+
+.pagination .current {
+  background: var(--color-primary);
+  color: #ffffff;
+}
+
+.pagination button:disabled {
+  cursor: not-allowed;
+  opacity: 0.45;
+}
+
+@media (max-width: 1199px) {
+  .productGrid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 991px) {
+  .shopLayout {
+    grid-template-columns: 1fr;
+  }
+
+  .filters {
+    position: static;
+  }
+
+  .productGrid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 575px) {
+  .toolbar {
+    align-items: stretch;
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+
+  .productGrid {
+    grid-template-columns: 1fr;
+  }
+}

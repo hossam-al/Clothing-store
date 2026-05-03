@@ -1,0 +1,68 @@
+.banner {
+  background:
+    radial-gradient(circle at 85% 20%, rgba(249, 115, 22, 0.3), transparent 26%),
+    radial-gradient(circle at 18% 80%, rgba(139, 92, 246, 0.35), transparent 32%),
+    var(--color-primary);
+  border-radius: 10px;
+  color: #ffffff;
+  overflow: hidden;
+  padding: clamp(2rem, 5vw, 4rem);
+  position: relative;
+}
+
+.banner::after {
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 10px;
+  content: "";
+  inset: 1rem;
+  pointer-events: none;
+  position: absolute;
+}
+
+.content {
+  max-width: 48rem;
+  position: relative;
+  z-index: 2;
+}
+
+.badges {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.55rem;
+  margin-bottom: 1rem;
+}
+
+.badges span {
+  background: rgba(255, 255, 255, 0.12);
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  border-radius: 999px;
+  font-weight: 900;
+  padding: 0.4rem 0.7rem;
+  text-transform: uppercase;
+}
+
+.banner h2 {
+  font-size: clamp(2.2rem, 5vw, 5rem);
+  font-weight: 900;
+  line-height: 0.95;
+  margin: 0;
+  text-transform: uppercase;
+}
+
+.banner p {
+  color: rgba(255, 255, 255, 0.72);
+  font-size: 1.08rem;
+  margin: 1rem 0 1.6rem;
+  max-width: 38rem;
+}
+
+.banner a {
+  display: inline-flex;
+  background: var(--color-highlight-orange);
+  border: 0;
+  border-radius: 8px;
+  color: #ffffff;
+  font-weight: 900;
+  padding: 0.85rem 1.2rem;
+  text-transform: uppercase;
+}

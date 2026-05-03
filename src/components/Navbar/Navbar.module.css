@@ -1,0 +1,95 @@
+.navbar {
+  background: var(--color-primary);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  padding: 1rem 0;
+  position: sticky;
+  top: 0;
+  z-index: 20;
+}
+
+.logo {
+  color: #ffffff;
+  font-size: 1.35rem;
+  font-weight: 900;
+  letter-spacing: 0;
+}
+
+.logo:hover {
+  color: #ffffff;
+}
+
+.logo span {
+  color: var(--color-highlight-orange);
+}
+
+.toggler {
+  background: #ffffff;
+  border: 0;
+  border-radius: 8px;
+}
+
+.links {
+  gap: 0.25rem;
+}
+
+.navLink {
+  color: rgba(255, 255, 255, 0.76);
+  display: block;
+  font-size: 0.95rem;
+  font-weight: 700;
+  padding: 0.65rem 0.85rem;
+  transition: color 0.2s ease;
+}
+
+.navLink:hover,
+.active {
+  color: var(--color-accent-purple);
+}
+
+.actions {
+  align-items: center;
+  display: flex;
+  gap: 0.65rem;
+}
+
+.iconLink,
+.loginLink {
+  border-radius: 8px;
+  color: #ffffff;
+  font-size: 0.9rem;
+  font-weight: 800;
+  padding: 0.55rem 0.75rem;
+  transition:
+    background-color 0.2s ease,
+    color 0.2s ease;
+}
+
+.iconLink {
+  background: rgba(255, 255, 255, 0.08);
+}
+
+.iconLink:hover {
+  background: var(--color-accent-purple);
+  color: #ffffff;
+}
+
+.loginLink {
+  background: var(--color-highlight-orange);
+}
+
+.loginLink:hover {
+  background: var(--color-highlight-orange-hover);
+  color: #ffffff;
+}
+
+@media (max-width: 991px) {
+  .links {
+    padding: 1rem 0 0.75rem;
+  }
+
+  .actions {
+    align-items: stretch;
+    flex-direction: column;
+    padding-bottom: 0.5rem;
+  }
+}

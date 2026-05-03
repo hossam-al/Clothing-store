@@ -1,0 +1,208 @@
+.page {
+  padding: 4rem 0;
+}
+
+.layout {
+  align-items: start;
+  display: grid;
+  gap: 2rem;
+  grid-template-columns: minmax(0, 1fr) minmax(20rem, 0.8fr);
+}
+
+.gallery,
+.info {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: 8px;
+  padding: 1rem;
+}
+
+.mainImage {
+  aspect-ratio: 4 / 5;
+  border-radius: 8px;
+  overflow: hidden;
+  position: relative;
+}
+
+.mainImage img {
+  height: 100%;
+  object-fit: cover;
+  position: relative;
+  width: 100%;
+  z-index: 1;
+}
+
+.mainImage::before,
+.mainImage::after {
+  content: "";
+  position: absolute;
+}
+
+.mainImage::before {
+  background: rgba(255, 255, 255, 0.72);
+  border-radius: 999px;
+  height: 38%;
+  left: 31%;
+  top: 14%;
+  width: 38%;
+}
+
+.mainImage::after {
+  background: var(--color-primary);
+  border-radius: 30px 30px 0 0;
+  bottom: 0;
+  height: 58%;
+  left: 23%;
+  width: 54%;
+}
+
+.purple {
+  background: linear-gradient(135deg, rgba(139, 92, 246, 0.34), #eeeeee);
+}
+
+.orange {
+  background: linear-gradient(135deg, rgba(249, 115, 22, 0.34), #eeeeee);
+}
+
+.mono {
+  background: linear-gradient(135deg, rgba(17, 17, 17, 0.18), #eeeeee);
+}
+
+.thumbs {
+  display: grid;
+  gap: 0.75rem;
+  grid-template-columns: repeat(3, 1fr);
+  margin-top: 0.75rem;
+}
+
+.thumbs button {
+  aspect-ratio: 1;
+  background: var(--color-background);
+  border: 1px solid var(--color-border);
+  border-radius: 8px;
+  overflow: hidden;
+  padding: 0;
+}
+
+.thumbs img {
+  height: 100%;
+  object-fit: cover;
+  width: 100%;
+}
+
+.thumbs .activeThumb {
+  border-color: var(--color-accent-purple);
+  box-shadow: 0 0 0 2px rgba(139, 92, 246, 0.18);
+}
+
+.info {
+  padding: 2rem;
+}
+
+.category {
+  color: var(--color-highlight-orange);
+  font-weight: 900;
+  text-transform: uppercase;
+}
+
+.info h1 {
+  font-size: clamp(2rem, 5vw, 4rem);
+  font-weight: 900;
+  line-height: 1;
+  margin: 0.5rem 0 1rem;
+  text-transform: uppercase;
+}
+
+.price {
+  align-items: baseline;
+  display: flex;
+  gap: 0.75rem;
+  margin-bottom: 1rem;
+}
+
+.price strong {
+  font-size: 1.75rem;
+}
+
+.price span {
+  color: var(--color-muted);
+  text-decoration: line-through;
+}
+
+.info p {
+  color: var(--color-muted);
+}
+
+.optionGroup {
+  margin-top: 1.5rem;
+}
+
+.optionGroup h2 {
+  font-size: 0.95rem;
+  font-weight: 900;
+  text-transform: uppercase;
+}
+
+.chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.chips button,
+.quantity button,
+.optionGroup select {
+  background: #ffffff;
+  border: 1px solid var(--color-border);
+  border-radius: 8px;
+  font-weight: 900;
+  min-width: 2.65rem;
+  padding: 0.55rem 0.8rem;
+}
+
+.optionGroup select {
+  width: 100%;
+}
+
+.status {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: 8px;
+  color: var(--color-muted);
+  font-weight: 800;
+  margin: 0 0 1rem;
+  padding: 0.8rem 1rem;
+}
+
+.cartMessage {
+  background: var(--color-background);
+  border: 1px solid var(--color-border);
+  border-radius: 8px;
+  color: var(--color-muted);
+  font-weight: 800;
+  margin: 1rem 0 0;
+  padding: 0.75rem;
+}
+
+.quantity {
+  align-items: center;
+  display: inline-flex;
+  gap: 0.75rem;
+  margin: 1.5rem 0;
+}
+
+.quantity span {
+  font-weight: 900;
+}
+
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+}
+
+@media (max-width: 991px) {
+  .layout {
+    grid-template-columns: 1fr;
+  }
+}

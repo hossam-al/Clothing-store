@@ -1,0 +1,156 @@
+.header {
+  background: var(--color-primary);
+  box-shadow: 0 10px 30px rgba(17, 17, 17, 0.22);
+  color: #ffffff;
+  position: sticky;
+  top: 0;
+  z-index: 50;
+}
+
+.navbar {
+  padding: 0.9rem 0;
+}
+
+.inner {
+  align-items: center;
+  display: grid;
+  gap: 0.9rem;
+  grid-template-columns: auto 1fr auto;
+}
+
+.logo {
+  align-items: center;
+  color: #ffffff;
+  display: inline-flex;
+  font-size: 1.35rem;
+  font-weight: 900;
+  gap: 0.55rem;
+  letter-spacing: 0;
+  white-space: nowrap;
+}
+
+.logo svg {
+  color: var(--color-highlight-orange);
+  font-size: 1.6rem;
+}
+
+.search {
+  align-items: center;
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  border-radius: 999px;
+  display: flex;
+  gap: 0.75rem;
+  min-height: 3rem;
+  padding: 0 1rem;
+}
+
+.search svg {
+  color: var(--color-accent-purple);
+}
+
+.search input {
+  background: transparent;
+  border: 0;
+  color: #ffffff;
+  outline: 0;
+  width: 100%;
+}
+
+.search input::placeholder {
+  color: rgba(255, 255, 255, 0.55);
+}
+
+.actions {
+  align-items: center;
+  display: flex;
+  gap: 0.5rem;
+}
+
+.actions a,
+.accountButton {
+  align-items: center;
+  border-radius: 8px;
+  color: #ffffff;
+  display: inline-flex;
+  font-size: 0.88rem;
+  font-weight: 800;
+  gap: 0.45rem;
+  padding: 0.55rem 0.7rem;
+  transition:
+    background-color 0.2s ease,
+    color 0.2s ease;
+}
+
+.accountButton {
+  background: transparent;
+  border: 0;
+}
+
+.actions a:hover,
+.accountButton:hover,
+.accountButton:focus {
+  background: var(--color-accent-purple);
+  color: #ffffff;
+}
+
+.iconWrap {
+  position: relative;
+}
+
+.iconWrap em {
+  align-items: center;
+  background: var(--color-highlight-orange);
+  border-radius: 999px;
+  color: #ffffff;
+  display: inline-flex;
+  font-size: 0.65rem;
+  font-style: normal;
+  height: 1rem;
+  justify-content: center;
+  position: absolute;
+  right: -0.7rem;
+  top: -0.65rem;
+  width: 1rem;
+}
+
+.accountMenu {
+  border: 0;
+  border-radius: 8px;
+  box-shadow: var(--shadow-strong);
+  margin-top: 0.6rem;
+  min-width: 12rem;
+  padding: 0.45rem;
+}
+
+.accountMenu :global(.dropdown-item) {
+  border-radius: 6px;
+  color: var(--color-primary);
+  font-weight: 800;
+  padding: 0.65rem 0.75rem;
+}
+
+.accountMenu :global(.dropdown-item:hover) {
+  background: rgba(139, 92, 246, 0.12);
+  color: var(--color-accent-purple);
+}
+
+@media (max-width: 991px) {
+  .inner {
+    grid-template-columns: 1fr;
+  }
+
+  .search {
+    order: 2;
+  }
+
+  .actions {
+    justify-content: space-between;
+    order: 3;
+  }
+
+  .actions strong,
+  .accountButton strong {
+    display: none;
+  }
+}

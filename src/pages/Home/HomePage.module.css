@@ -1,0 +1,43 @@
+.page {
+  background:
+    linear-gradient(180deg, rgba(139, 92, 246, 0.05), transparent 28rem),
+    var(--color-background);
+  min-height: 100vh;
+}
+
+.section {
+  padding: clamp(2.75rem, 6vw, 5rem) 0;
+}
+
+.bannerSection {
+  padding: 1rem 0 clamp(2.75rem, 6vw, 5rem);
+}
+
+.brandGrid {
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+}
+
+.productGrid {
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+}
+
+@media (max-width: 991px) {
+  .brandGrid,
+  .productGrid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 575px) {
+  .brandGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .productGrid {
+    grid-template-columns: 1fr;
+  }
+}
