@@ -9,21 +9,24 @@ import ProductsPage from "../pages/Products/ProductsPage";
 import ProfilePage from "../pages/Profile/ProfilePage";
 import RegisterPage from "../pages/Register/RegisterPage";
 import WishlistPage from "../pages/Wishlist/WishlistPage";
+import MainLayout from "../layouts/MainLayout";
 
 function AppRoutes() {
   return (
     <Routes>
-      <Route element={<HomePage />} path="/" />
-      <Route element={<ProductsPage />} path="/products" />
-      <Route element={<ProductDetailsPage />} path="/products/:id" />
-      <Route element={<CartPage />} path="/cart" />
-      <Route element={<WishlistPage />} path="/wishlist" />
-      <Route element={<CheckoutPage />} path="/checkout" />
-      <Route element={<LoginPage />} path="/login" />
-      <Route element={<RegisterPage />} path="/register" />
-      <Route element={<OrdersPage />} path="/orders" />
-      <Route element={<ProfilePage />} path="/profile" />
-      <Route element={<HomePage />} path="*" />
+      <Route element={<MainLayout />}>
+        <Route element={<HomePage />} path="/" />
+        <Route element={<ProductsPage />} path="/products" />
+        <Route element={<ProductDetailsPage />} path="/products/:id" />
+        <Route element={<CartPage />} path="/cart" />
+        <Route element={<WishlistPage />} path="/wishlist" />
+        <Route element={<CheckoutPage />} path="/checkout" />
+        <Route element={<LoginPage />} path="/login" />
+        <Route element={<RegisterPage />} path="/register" />
+        <Route element={<OrdersPage />} path="/orders" />
+        <Route element={<ProfilePage />} path="/profile" />
+        <Route element={<HomePage />} path="*" />
+      </Route>
     </Routes>
   );
 }

@@ -1,7 +1,5 @@
 import BrandCard from "../../components/BrandCard/BrandCard";
 import CategorySlider from "../../components/CategorySlider/CategorySlider";
-import Footer from "../../components/Footer/Footer";
-import Header from "../../components/Header/Header";
 import HeroSlider from "../../components/HeroSlider/HeroSlider";
 import ProductCard from "../../components/ProductCard/ProductCard";
 import PromoBanner from "../../components/PromoBanner/PromoBanner";
@@ -14,8 +12,6 @@ import styles from "./HomePage.module.css";
 function HomePage() {
   return (
     <div className={styles.page}>
-      <Header />
-
       <main>
         <HeroSlider />
 
@@ -85,8 +81,6 @@ function HomePage() {
           </div>
         </section>
       </main>
-
-      <Footer />
     </div>
   );
 }
