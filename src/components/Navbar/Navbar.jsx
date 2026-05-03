@@ -8,7 +8,7 @@ const navLinks = [
   { label: "Shop", to: "/products" },
   { label: "New Arrivals", to: "/products?sort=new" },
   { label: "Sale", to: "/products?sale=true" },
-  { label: "Contact", to: "/contact" },
+  { label: "Orders", to: "/orders" },
 ];
 
 function Navbar() {
@@ -30,6 +30,17 @@ function Navbar() {
       window.removeEventListener("wishlist-updated", syncState);
     };
   }, []);
+
+  const closeMenuOnMobile = () => {
+    const collapseElement = document.getElementById("mainNavbar");
+    if (!collapseElement || window.innerWidth > 991) {
+      return;
+    }
+
+    if (collapseElement.classList.contains("show") && window.bootstrap?.Collapse) {
+      window.bootstrap.Collapse.getOrCreateInstance(collapseElement).hide();
+    }
+  };
 
   return (
     <nav className={`navbar navbar-expand-lg ${styles.navbar}`}>
@@ -58,6 +69,7 @@ function Navbar() {
                   className={({ isActive }) =>
                     `${styles.navLink} ${isActive ? styles.active : ""}`
                   }
+                  onClick={closeMenuOnMobile}
                   to={link.to}
                 >
                   {link.label}
@@ -67,13 +79,17 @@ function Navbar() {
           </ul>
 
           <div className={styles.actions}>
-            <NavLink className={styles.iconLink} to="/wishlist">
+            <NavLink className={styles.iconLink} onClick={closeMenuOnMobile} to="/wishlist">
               Wishlist {wishlistCount > 0 ? `(${wishlistCount})` : ""}
             </NavLink>
-            <NavLink className={styles.iconLink} to="/cart">
+            <NavLink className={styles.iconLink} onClick={closeMenuOnMobile} to="/cart">
               Cart
             </NavLink>
-            <NavLink className={styles.loginLink} to={hasToken ? "/profile" : "/login"}>
+            <NavLink
+              className={styles.loginLink}
+              onClick={closeMenuOnMobile}
+              to={hasToken ? "/profile" : "/login"}
+            >
               {hasToken ? "Profile" : "Login"}
             </NavLink>
           </div>
