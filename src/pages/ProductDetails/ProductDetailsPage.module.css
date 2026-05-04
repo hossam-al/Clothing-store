@@ -1,81 +1,103 @@
 .page {
-  padding: 4rem 0;
+  background:
+    radial-gradient(circle at top right, rgba(249, 115, 22, 0.1), transparent 30%),
+    radial-gradient(circle at top left, rgba(139, 92, 246, 0.1), transparent 28%),
+    var(--color-background);
+  padding: clamp(2rem, 5vw, 4rem) 0;
 }
 
-.layout {
+.heroRow {
   align-items: start;
   display: grid;
-  gap: 2rem;
-  grid-template-columns: minmax(0, 1fr) minmax(20rem, 0.8fr);
+  gap: 1.5rem;
+  grid-template-columns: minmax(21rem, 0.8fr) minmax(28rem, 1.25fr);
+  margin-bottom: 1.25rem;
 }
 
-.gallery,
-.info {
+.galleryCard,
+.infoCard,
+.panel,
+.similarSection {
   background: var(--color-surface);
   border: 1px solid var(--color-border);
   border-radius: 8px;
+  box-shadow: var(--shadow-soft);
+}
+
+.galleryCard {
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: minmax(0, 1fr) 5.25rem;
   padding: 1rem;
+  position: sticky;
+  top: 8rem;
+}
+
+.mainImageWrap {
+  position: relative;
 }
 
 .mainImage {
-  aspect-ratio: 4 / 5;
+  aspect-ratio: 5 / 4;
+  background:
+    linear-gradient(135deg, rgba(139, 92, 246, 0.08), rgba(249, 115, 22, 0.08)),
+    var(--color-background);
   border-radius: 8px;
   overflow: hidden;
-  position: relative;
 }
 
 .mainImage img {
   height: 100%;
   object-fit: cover;
-  position: relative;
+  object-position: center;
+  transform: scale(1);
+  transition: transform 0.45s ease;
   width: 100%;
-  z-index: 1;
 }
 
-.mainImage::before,
-.mainImage::after {
-  content: "";
-  position: absolute;
+.mainImage:hover img {
+  transform: scale(1.08);
 }
 
-.mainImage::before {
-  background: rgba(255, 255, 255, 0.72);
+.previewButton {
+  align-items: center;
+  background: rgba(17, 17, 17, 0.82) !important;
+  border: 0;
   border-radius: 999px;
-  height: 38%;
-  left: 31%;
-  top: 14%;
-  width: 38%;
+  color: #ffffff !important;
+  display: inline-flex;
+  height: 2.75rem;
+  justify-content: center;
+  min-width: 0;
+  padding: 0;
+  position: absolute;
+  right: 1rem;
+  top: 1rem;
+  width: 2.75rem;
+  z-index: 3;
 }
 
-.mainImage::after {
-  background: var(--color-primary);
-  border-radius: 30px 30px 0 0;
-  bottom: 0;
-  height: 58%;
-  left: 23%;
-  width: 54%;
+.previewButton:hover,
+.previewButton:focus {
+  background: var(--color-highlight-orange) !important;
+  color: #ffffff !important;
 }
 
-.purple {
-  background: linear-gradient(135deg, rgba(139, 92, 246, 0.34), #eeeeee);
-}
-
-.orange {
-  background: linear-gradient(135deg, rgba(249, 115, 22, 0.34), #eeeeee);
-}
-
-.mono {
-  background: linear-gradient(135deg, rgba(17, 17, 17, 0.18), #eeeeee);
+.thumbs,
+.previewThumbs {
+  display: grid;
+  gap: 0.65rem;
+  grid-template-columns: repeat(6, minmax(0, 1fr));
+  margin-top: 0;
 }
 
 .thumbs {
-  display: grid;
-  gap: 0.75rem;
-  grid-template-columns: repeat(3, 1fr);
-  margin-top: 0.75rem;
+  align-content: start;
+  grid-template-columns: 1fr;
 }
 
-.thumbs button {
+.thumbs button,
+.previewThumbs button {
   aspect-ratio: 1;
   background: var(--color-background);
   border: 1px solid var(--color-border);
@@ -84,125 +106,816 @@
   padding: 0;
 }
 
-.thumbs img {
+.thumbs img,
+.previewThumbs img {
   height: 100%;
   object-fit: cover;
   width: 100%;
 }
 
-.thumbs .activeThumb {
-  border-color: var(--color-accent-purple);
-  box-shadow: 0 0 0 2px rgba(139, 92, 246, 0.18);
+.thumbs .activeThumb,
+.previewThumbs .activeThumb {
+  border-color: var(--color-highlight-orange);
+  box-shadow: 0 0 0 2px rgba(249, 115, 22, 0.22);
 }
 
-.info {
-  padding: 2rem;
+.previewModal {
+  align-items: center;
+  background: rgba(17, 17, 17, 0.88);
+  inset: 0;
+  display: flex;
+  justify-content: center;
+  padding: 2rem 5rem;
+  position: fixed;
+  z-index: 9999;
 }
 
-.category {
+.previewControls {
+  align-items: center;
+  background: rgba(17, 17, 17, 0.72);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 999px;
+  display: flex;
+  gap: 0.35rem;
+  left: 50%;
+  padding: 0.35rem;
+  position: fixed;
+  top: 1.25rem;
+  transform: translateX(-50%);
+  z-index: 10001;
+}
+
+.controlButton,
+.closePreview {
+  align-items: center;
+  border: 0;
+  border-radius: 999px;
+  display: inline-flex;
+  height: 2.45rem;
+  justify-content: center;
+  min-width: 0;
+  width: 2.45rem;
+}
+
+.controlButton {
+  background: rgba(255, 255, 255, 0.12);
+  color: #ffffff;
+}
+
+.controlButton:hover,
+.controlButton:focus {
+  background: rgba(255, 255, 255, 0.2);
+  color: #ffffff;
+}
+
+.controlButton:disabled {
+  color: rgba(255, 255, 255, 0.35);
+  opacity: 0.55;
+}
+
+.previewDialog {
+  align-items: center;
+  display: grid;
+  gap: 1rem;
+  grid-template-rows: minmax(0, 1fr) auto;
+  height: min(52rem, calc(100dvh - 4rem));
+  max-width: min(68rem, calc(100vw - 10rem));
+  position: relative;
+  width: 100%;
+  z-index: 10000;
+}
+
+.closePreview {
+  background: #ffffff;
+  color: var(--color-primary);
+}
+
+.closePreview:hover,
+.closePreview:focus {
+  background: var(--color-highlight-orange);
+  color: #ffffff;
+}
+
+.previewImage {
+  align-items: center;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  border-radius: 8px;
+  display: flex;
+  height: 100%;
+  justify-content: center;
+  cursor: default;
+  min-height: 0;
+  overflow: hidden;
+  touch-action: none;
+  user-select: none;
+  width: 100%;
+}
+
+.previewImageZoomed {
+  cursor: grab;
+}
+
+.previewImageDragging {
+  cursor: grabbing;
+}
+
+.previewImage img {
+  border-radius: 8px;
+  height: 100%;
+  max-height: 100%;
+  max-width: 100%;
+  object-fit: contain;
+  pointer-events: none;
+  transform-origin: center center;
+  transition: transform 0.18s ease;
+  width: auto;
+  will-change: transform;
+}
+
+.previewImageDragging img {
+  transition: none;
+}
+
+.previewThumbs {
+  grid-template-columns: repeat(6, minmax(4.5rem, 1fr));
+  margin: 0 auto;
+  max-width: min(42rem, 100%);
+  width: 100%;
+}
+
+.infoCard {
+  align-self: stretch;
+  display: grid;
+  gap: 1.1rem;
+  padding: clamp(1.25rem, 3vw, 2rem);
+}
+
+.metaRow,
+.ratingLine,
+.priceRow,
+.optionHeader,
+.purchaseRow,
+.sectionHeader,
+.reviewSummary {
+  align-items: center;
+  display: flex;
+}
+
+.metaRow,
+.sectionHeader {
+  justify-content: space-between;
+}
+
+.category,
+.sectionHeader span {
   color: var(--color-highlight-orange);
+  font-size: 0.78rem;
   font-weight: 900;
   text-transform: uppercase;
 }
 
-.info h1 {
-  font-size: clamp(2rem, 5vw, 4rem);
+.stockIn,
+.stockOut {
+  border-radius: 999px;
+  font-size: 0.75rem;
   font-weight: 900;
-  line-height: 1;
-  margin: 0.5rem 0 1rem;
+  padding: 0.35rem 0.7rem;
+}
+
+.stockIn {
+  background: rgba(34, 197, 94, 0.12);
+  color: var(--color-success);
+}
+
+.stockOut {
+  background: rgba(239, 68, 68, 0.12);
+  color: var(--color-sale);
+}
+
+.infoCard h1 {
+  color: var(--color-primary);
+  font-size: clamp(1.8rem, 3.4vw, 3.1rem);
+  font-weight: 900;
+  line-height: 1.05;
+  margin: 0;
   text-transform: uppercase;
 }
 
-.price {
-  align-items: baseline;
-  display: flex;
-  gap: 0.75rem;
-  margin-bottom: 1rem;
-}
-
-.price strong {
-  font-size: 1.75rem;
-}
-
-.price span {
-  color: var(--color-muted);
-  text-decoration: line-through;
-}
-
-.info p {
-  color: var(--color-muted);
-}
-
-.optionGroup {
-  margin-top: 1.5rem;
-}
-
-.optionGroup h2 {
-  font-size: 0.95rem;
-  font-weight: 900;
-  text-transform: uppercase;
-}
-
-.chips {
-  display: flex;
+.ratingLine {
   flex-wrap: wrap;
   gap: 0.5rem;
 }
 
-.chips button,
-.quantity button,
-.optionGroup select {
+.stars {
+  color: var(--color-highlight-orange);
+  display: inline-flex;
+  gap: 0.18rem;
+}
+
+.ratingLine strong,
+.ratingLine span {
+  color: var(--color-muted);
+  font-size: 0.9rem;
+  font-weight: 800;
+}
+
+.priceRow {
+  flex-wrap: wrap;
+  gap: 0.75rem;
+}
+
+.priceRow strong {
+  font-size: 2rem;
+  font-weight: 900;
+}
+
+.priceRow span {
+  color: var(--color-muted);
+  text-decoration: line-through;
+}
+
+.priceRow em {
+  background: var(--color-sale);
+  border-radius: 999px;
+  color: #ffffff;
+  font-size: 0.8rem;
+  font-style: normal;
+  font-weight: 900;
+  padding: 0.35rem 0.65rem;
+}
+
+.shortDescription {
+  color: var(--color-muted);
+  font-weight: 700;
+  line-height: 1.8;
+  margin: 0;
+}
+
+.productFacts {
+  border: 1px solid var(--color-border);
+  border-radius: 8px;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  overflow: hidden;
+}
+
+.productFacts div {
+  display: grid;
+  gap: 0.2rem;
+  padding: 0.8rem;
+}
+
+.productFacts div + div {
+  border-left: 1px solid var(--color-border);
+}
+
+.productFacts span,
+.optionHeader span,
+.tabBody span,
+.reviewCard span {
+  color: var(--color-muted);
+  font-size: 0.78rem;
+  font-weight: 800;
+}
+
+.productFacts strong {
+  font-size: 0.9rem;
+  font-weight: 900;
+}
+
+.optionGroup {
+  display: grid;
+  gap: 0.65rem;
+}
+
+.optionHeader {
+  justify-content: space-between;
+}
+
+.optionHeader h2,
+.benefitCard h2,
+.tabBody h2,
+.reviewCard strong {
+  font-size: 0.95rem;
+  font-weight: 900;
+  margin: 0;
+}
+
+.colorOptions,
+.sizeOptions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.55rem;
+}
+
+.colorOptions button,
+.sizeOptions button,
+.quantity button {
   background: #ffffff;
   border: 1px solid var(--color-border);
   border-radius: 8px;
+  color: var(--color-primary);
   font-weight: 900;
-  min-width: 2.65rem;
-  padding: 0.55rem 0.8rem;
+  min-height: 2.75rem;
+  padding: 0.5rem 0.75rem;
 }
 
-.optionGroup select {
-  width: 100%;
+.colorOptions button {
+  gap: 0.45rem;
 }
 
+.colorSwatch {
+  background: var(--swatch);
+  border: 1px solid rgba(17, 17, 17, 0.16);
+  border-radius: 999px;
+  display: inline-flex;
+  height: 1rem;
+  width: 1rem;
+}
+
+.selectedOption {
+  border-color: var(--color-highlight-orange) !important;
+  box-shadow: 0 0 0 2px rgba(249, 115, 22, 0.18);
+  color: var(--color-highlight-orange) !important;
+}
+
+.purchaseRow {
+  align-items: stretch;
+  display: grid;
+  gap: 0.9rem;
+  grid-template-columns: minmax(0, 1fr) 8.5rem;
+}
+
+.quantity {
+  align-items: center;
+  border: 1px solid var(--color-border);
+  border-radius: 8px;
+  display: inline-flex;
+  flex: 0 0 auto;
+  grid-column: 2;
+  grid-row: 1;
+  justify-content: space-between;
+  overflow: hidden;
+}
+
+.quantity button {
+  border: 0;
+  border-radius: 0;
+}
+
+.quantity span {
+  font-weight: 900;
+  min-width: 2.6rem;
+  text-align: center;
+}
+
+.actions {
+  display: flex;
+  flex: 1;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  grid-column: 1;
+  grid-row: 1;
+}
+
+.actions > * {
+  flex: 1 1 11rem;
+}
+
+.cartMessage,
 .status {
   background: var(--color-surface);
   border: 1px solid var(--color-border);
   border-radius: 8px;
   color: var(--color-muted);
   font-weight: 800;
-  margin: 0 0 1rem;
+  margin: 0;
   padding: 0.8rem 1rem;
 }
 
-.cartMessage {
-  background: var(--color-background);
-  border: 1px solid var(--color-border);
+.benefitsGrid {
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  margin: 1.25rem 0;
+}
+
+.benefitCard {
+  align-items: flex-start;
+  background: var(--color-primary);
+  border-radius: 8px;
+  color: #ffffff;
+  display: flex;
+  gap: 0.85rem;
+  min-height: 8.5rem;
+  padding: 1rem;
+}
+
+.benefitCard > span {
+  align-items: center;
+  background: rgba(249, 115, 22, 0.16);
+  border-radius: 8px;
+  color: var(--color-highlight-orange);
+  display: inline-flex;
+  flex: 0 0 auto;
+  height: 2.6rem;
+  justify-content: center;
+  width: 2.6rem;
+}
+
+.benefitCard p,
+.tabBody p,
+.tabBody li,
+.reviewCard p,
+.reviewSummary p,
+.emptyState p {
+  color: var(--color-muted);
+  font-weight: 700;
+  line-height: 1.7;
+  margin: 0;
+}
+
+.benefitCard p {
+  color: rgba(255, 255, 255, 0.72);
+  font-size: 0.86rem;
+  margin-top: 0.35rem;
+}
+
+.panel,
+.similarSection {
+  margin-top: 1.25rem;
+  padding: clamp(1rem, 3vw, 1.5rem);
+}
+
+.tabs {
+  border-bottom: 1px solid var(--color-border);
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  padding-bottom: 0.85rem;
+}
+
+.tabs button {
   border-radius: 8px;
   color: var(--color-muted);
-  font-weight: 800;
-  margin: 1rem 0 0;
-  padding: 0.75rem;
+  font-weight: 900;
+  gap: 0.45rem;
+  padding: 0.65rem 0.85rem;
 }
 
-.quantity {
-  align-items: center;
-  display: inline-flex;
+.activeTab {
+  background: rgba(249, 115, 22, 0.12) !important;
+  color: var(--color-highlight-orange) !important;
+}
+
+.tabBody {
+  padding-top: 1.25rem;
+}
+
+.tabBody > div {
+  display: grid;
   gap: 0.75rem;
-  margin: 1.5rem 0;
 }
 
-.quantity span {
+.tabBody ul {
+  display: grid;
+  gap: 0.4rem;
+  margin: 0;
+  padding-left: 1.2rem;
+}
+
+.faqSection {
+  background: #ffffff;
+  direction: rtl;
+}
+
+.faqSection h2 {
+  color: var(--color-primary);
+  font-size: clamp(1.35rem, 3vw, 2rem);
+  font-weight: 900;
+  margin: 0 0 1.1rem;
+  text-align: center;
+}
+
+.faqList {
+  border: 1px solid var(--color-border);
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.faqItem + .faqItem {
+  border-top: 1px solid var(--color-border);
+}
+
+.faqQuestion {
+  align-items: center;
+  background: #ffffff !important;
+  border-radius: 0 !important;
+  color: var(--color-primary) !important;
+  display: flex !important;
+  font-weight: 900 !important;
+  justify-content: space-between !important;
+  min-height: 3.25rem;
+  padding: 0.85rem 1rem !important;
+  text-align: right !important;
+  width: 100%;
+}
+
+.faqQuestion span {
+  flex: 1;
+  line-height: 1.5;
+}
+
+.faqQuestion svg {
+  color: var(--color-muted);
+  flex: 0 0 auto;
+  font-size: 0.85rem;
+  margin-right: 0.75rem;
+  transition: transform 0.2s ease;
+}
+
+.faqIconOpen {
+  transform: rotate(180deg);
+}
+
+.faqAnswer {
+  background: var(--color-background);
+  border-top: 1px solid var(--color-border);
+  color: var(--color-muted);
+  font-weight: 800;
+  line-height: 1.8;
+  margin: 0;
+  padding: 0.9rem 1rem 1rem;
+  text-align: right;
+}
+
+.specGrid {
+  display: grid;
+  gap: 0.85rem;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+}
+
+.specGrid div {
+  background: var(--color-background);
+  border-radius: 8px;
+  display: grid;
+  gap: 0.25rem;
+  padding: 1rem;
+}
+
+.sectionHeader {
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+.sectionHeader h2 {
+  color: var(--color-primary);
+  font-size: clamp(1.6rem, 4vw, 2.4rem);
+  font-weight: 900;
+  margin: 0.2rem 0 0;
+  text-transform: uppercase;
+}
+
+.reviewSummary {
+  background: var(--color-background);
+  border-radius: 8px;
+  gap: 1rem;
+  margin-bottom: 1rem;
+  padding: 1rem;
+}
+
+.reviewSummary > strong {
+  color: var(--color-primary);
+  font-size: 3rem;
+  font-weight: 900;
+  line-height: 1;
+}
+
+.reviewsList {
+  display: grid;
+  gap: 0.8rem;
+}
+
+.reviewCard {
+  border: 1px solid var(--color-border);
+  border-radius: 8px;
+  display: grid;
+  gap: 0.5rem;
+  padding: 1rem;
+}
+
+.reviewCard > div {
+  align-items: center;
+  display: flex;
+  justify-content: space-between;
+}
+
+.emptyState {
+  background: var(--color-background);
+  border-radius: 8px;
+  padding: 1.25rem;
+}
+
+.emptyState h3 {
+  font-weight: 900;
+  margin: 0 0 0.35rem;
+}
+
+.similarSlider {
+  padding: 0.25rem 0.2rem 2.8rem;
+}
+
+.similarSlide {
+  height: auto;
+}
+
+.similarSlide > * {
+  height: 100%;
+}
+
+.similarSlider :global(.swiper-button-prev),
+.similarSlider :global(.swiper-button-next) {
+  background: var(--color-primary);
+  border-radius: 999px;
+  box-shadow: var(--shadow-soft);
+  color: #ffffff;
+  height: 2.65rem;
+  top: 42%;
+  width: 2.65rem;
+}
+
+.similarSlider :global(.swiper-button-prev::after),
+.similarSlider :global(.swiper-button-next::after) {
+  font-size: 0.9rem;
   font-weight: 900;
 }
 
-.actions {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.75rem;
+.similarSlider :global(.swiper-pagination-bullet-active) {
+  background: var(--color-highlight-orange);
+}
+
+@media (max-width: 1199px) {
+  .benefitsGrid,
+  .specGrid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
 }
 
 @media (max-width: 991px) {
-  .layout {
+  .heroRow {
     grid-template-columns: 1fr;
+  }
+
+  .galleryCard {
+    display: grid;
+    grid-template-columns: 1fr;
+    position: static;
+    order: 1;
+  }
+
+  .thumbs {
+    grid-template-columns: repeat(6, minmax(4.25rem, 1fr));
+    overflow-x: auto;
+    padding-bottom: 0.15rem;
+  }
+
+  .infoCard {
+    order: 2;
+  }
+
+  .purchaseRow {
+    align-items: stretch;
+    grid-template-columns: 1fr;
+  }
+
+  .quantity {
+    grid-column: auto;
+    grid-row: auto;
+    width: max-content;
+  }
+
+  .actions {
+    grid-column: auto;
+    grid-row: auto;
+  }
+}
+
+@media (max-width: 575px) {
+  .page {
+    padding: 0 0 2.5rem;
+  }
+
+  .galleryCard,
+  .infoCard,
+  .panel,
+  .similarSection {
+    border-radius: 8px;
+  }
+
+  .heroRow {
+    gap: 0.85rem;
+  }
+
+  .galleryCard {
+    border-radius: 0;
+    margin-left: -0.75rem;
+    margin-right: -0.75rem;
+    padding: 0.65rem 0.75rem 0.85rem;
+  }
+
+  .thumbs {
+    gap: 0.55rem;
+    grid-template-columns: repeat(6, 4.4rem);
+  }
+
+  .mainImage {
+    aspect-ratio: 4 / 5.15;
+    border-radius: 0;
+    max-height: none;
+  }
+
+  .mainImage img {
+    object-position: top center;
+  }
+
+  .previewButton {
+    height: 2.45rem;
+    left: auto;
+    min-width: 0 !important;
+    padding: 0 !important;
+    right: 1rem;
+    top: 0.85rem;
+    transform: none !important;
+    width: 2.45rem;
+  }
+
+  .infoCard {
+    box-shadow: none;
+    padding: 1rem 1.25rem 1.25rem;
+  }
+
+  .previewModal {
+    align-items: stretch;
+    padding: 4.75rem 1rem 1rem;
+  }
+
+  .previewDialog {
+    height: calc(100dvh - 5.75rem);
+    max-width: 100%;
+  }
+
+  .previewControls {
+    left: 1rem;
+    right: 1rem;
+    justify-content: center;
+    top: 1rem;
+    transform: none;
+  }
+
+  .previewThumbs {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .infoCard h1 {
+    font-size: 2.2rem;
+  }
+
+  .productFacts,
+  .benefitsGrid,
+  .specGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .productFacts div + div {
+    border-left: 0;
+    border-top: 1px solid var(--color-border);
+  }
+
+  .benefitCard {
+    min-height: auto;
+  }
+
+  .sectionHeader {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .actions {
+    flex-direction: column;
+  }
+
+  .actions > * {
+    flex: 0 0 auto;
+    width: 100%;
+  }
+
+  .similarSlider {
+    margin-right: -1rem;
+  }
+
+  .similarSlider :global(.swiper-button-prev),
+  .similarSlider :global(.swiper-button-next) {
+    display: none;
   }
 }

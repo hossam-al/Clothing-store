@@ -3,6 +3,8 @@
   border: 1px solid var(--color-border);
   border-radius: 14px;
   box-shadow: var(--shadow-soft);
+  display: flex;
+  flex-direction: column;
   height: 100%;
   overflow: hidden;
   transition:
@@ -20,8 +22,11 @@
 .media {
   aspect-ratio: 4 / 5;
   background: linear-gradient(180deg, rgba(139, 92, 246, 0.08), var(--color-background));
+  display: block;
+  flex: 0 0 auto;
   overflow: hidden;
   position: relative;
+  width: 100%;
 }
 
 .media img {
@@ -56,6 +61,8 @@
   display: flex;
   height: 2.4rem;
   justify-content: center;
+  min-width: 0;
+  padding: 0;
   position: absolute;
   right: 0.8rem;
   top: 0.8rem;
@@ -68,6 +75,9 @@
 }
 
 .body {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
   padding: 1rem;
 }
 
@@ -129,6 +139,7 @@
   font-weight: 900;
   gap: 0.5rem;
   justify-content: center;
+  margin-top: auto;
   padding: 0.75rem;
   text-transform: uppercase;
   width: 100%;

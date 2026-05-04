@@ -43,3 +43,25 @@
   color: var(--color-muted);
   margin: 0;
 }
+
+@media (max-width: 575px) {
+  .card {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 0.65rem;
+    padding: 0.8rem;
+  }
+
+  .mark {
+    font-size: 0.95rem;
+    width: 3rem;
+  }
+
+  .card h3 {
+    font-size: 0.95rem;
+  }
+
+  .card p {
+    font-size: 0.8rem;
+  }
+}

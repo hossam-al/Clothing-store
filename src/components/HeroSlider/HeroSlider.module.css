@@ -5,6 +5,8 @@
 
 .swiper {
   border-radius: 10px;
+  height: clamp(38rem, 72vh, 48rem);
+  overflow: hidden;
 }
 
 .slide {
@@ -17,7 +19,7 @@
   display: grid;
   gap: 2rem;
   grid-template-columns: minmax(0, 1fr) minmax(18rem, 0.82fr);
-  min-height: 34rem;
+  height: clamp(38rem, 72vh, 48rem);
   overflow: hidden;
   padding: clamp(2rem, 5vw, 4rem);
   position: relative;
@@ -28,7 +30,8 @@
   z-index: 2;
 }
 
-.content span {
+.eyebrow {
+  animation: heroContentIn 0.65s ease both;
   background: rgba(255, 255, 255, 0.12);
   border: 1px solid rgba(255, 255, 255, 0.16);
   border-radius: 999px;
@@ -40,17 +43,19 @@
   text-transform: uppercase;
 }
 
-.content h1 {
-  font-size: clamp(3rem, 7vw, 6.5rem);
+.title {
+  animation: heroContentIn 0.75s ease 0.08s both;
+  font-size: clamp(3rem, 6vw, 5.15rem);
   font-weight: 900;
   letter-spacing: 0;
-  line-height: 0.9;
+  line-height: 0.95;
   margin: 0;
   max-width: 48rem;
   text-transform: uppercase;
 }
 
-.content p {
+.description {
+  animation: heroContentIn 0.75s ease 0.22s both;
   color: rgba(255, 255, 255, 0.72);
   font-size: 1.1rem;
   margin: 1.25rem 0 0;
@@ -58,6 +63,7 @@
 }
 
 .actions {
+  animation: heroContentIn 0.75s ease 0.36s both;
   display: flex;
   flex-wrap: wrap;
   gap: 0.75rem;
@@ -113,18 +119,77 @@
   background: var(--color-highlight-orange);
 }
 
-.sale .content span {
+.sale .eyebrow {
   color: #ffffff;
   background: var(--color-sale);
 }
 
+@keyframes heroContentIn {
+  from {
+    opacity: 0;
+    transform: translateY(1.25rem);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.swiper :global(.swiper-button-prev),
+.swiper :global(.swiper-button-next) {
+  color: #ffffff;
+  height: 2.75rem;
+  width: 2.75rem;
+}
+
+.swiper :global(.swiper-button-prev::after),
+.swiper :global(.swiper-button-next::after) {
+  font-size: 1.1rem;
+  font-weight: 900;
+}
+
+.swiper :global(.swiper-pagination-bullet) {
+  background: rgba(255, 255, 255, 0.65);
+  opacity: 1;
+}
+
+.swiper :global(.swiper-pagination-bullet-active) {
+  background: var(--color-highlight-orange);
+}
+
 @media (max-width: 767px) {
+  .swiper,
   .slide {
+    height: clamp(52rem, 108svh, 58rem);
     grid-template-columns: 1fr;
-    min-height: auto;
+    padding: 1.4rem 1.4rem 3.75rem;
   }
 
   .visual {
-    max-height: 22rem;
+    aspect-ratio: 16 / 11;
+    max-height: 21rem;
+  }
+
+  .title {
+    font-size: clamp(2.35rem, 13vw, 3.4rem);
+  }
+
+  .description {
+    font-size: 0.98rem;
+  }
+
+  .actions {
+    margin-top: 1.3rem;
+  }
+
+  .actions a {
+    flex: 1 1 100%;
+    text-align: center;
+  }
+
+  .swiper :global(.swiper-button-prev),
+  .swiper :global(.swiper-button-next) {
+    display: none;
   }
 }

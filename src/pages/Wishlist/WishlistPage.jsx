@@ -1,3 +1,4 @@
+import MuiButton from "@mui/material/Button";
 import { useEffect, useState } from "react";
 import ProductCard from "../../components/ProductCard/ProductCard";
 import {
@@ -41,9 +42,9 @@ function WishlistPage() {
             {wishlistItems.map((product) => (
               <div className={styles.item} key={product.id}>
                 <ProductCard product={product} />
-                <button onClick={() => handleRemove(product.id)} type="button">
+                <MuiButton onClick={() => handleRemove(product.id)} type="button">
                   Remove from Wishlist
-                </button>
+                </MuiButton>
               </div>
             ))}
           </div>

@@ -1,3 +1,4 @@
+import MuiButton from "@mui/material/Button";
 import { FaHeart, FaShoppingBag, FaStar } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import styles from "./ProductCard.module.css";
@@ -8,9 +9,13 @@ function ProductCard({ product }) {
       <Link className={styles.media} to={`/products/${product.id}`}>
         <img alt={product.name} src={product.image} />
         {product.discount && <span className={styles.badge}>{product.discount}</span>}
-        <button aria-label="Add to wishlist" className={styles.wishlist} type="button">
+        <MuiButton
+          aria-label="Add to wishlist"
+          className={styles.wishlist}
+          type="button"
+        >
           <FaHeart />
-        </button>
+        </MuiButton>
       </Link>
 
       <div className={styles.body}>
@@ -28,10 +33,10 @@ function ProductCard({ product }) {
           <strong>${product.price}</strong>
           {product.oldPrice && <span>${product.oldPrice}</span>}
         </div>
-        <button className={styles.cartButton} type="button">
+        <MuiButton className={styles.cartButton} type="button">
           <FaShoppingBag />
           Add to Cart
-        </button>
+        </MuiButton>
       </div>
     </article>
   );

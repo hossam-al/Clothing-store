@@ -22,6 +22,7 @@ function ProfilePage() {
     } finally {
       localStorage.removeItem("auth_token");
       localStorage.removeItem("auth_user");
+      window.dispatchEvent(new Event("auth-updated"));
       navigate("/login");
     }
   };

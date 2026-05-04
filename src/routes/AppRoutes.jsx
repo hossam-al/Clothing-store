@@ -10,6 +10,7 @@ import ProfilePage from "../pages/Profile/ProfilePage";
 import RegisterPage from "../pages/Register/RegisterPage";
 import WishlistPage from "../pages/Wishlist/WishlistPage";
 import MainLayout from "../layouts/MainLayout";
+import { NotFound, PageExpired } from "../components/ui";
 
 function AppRoutes() {
   return (
@@ -25,7 +26,8 @@ function AppRoutes() {
         <Route element={<RegisterPage />} path="/register" />
         <Route element={<OrdersPage />} path="/orders" />
         <Route element={<ProfilePage />} path="/profile" />
-        <Route element={<HomePage />} path="*" />
+        <Route element={<PageExpired />} path="/page-expired" />
+        <Route element={<NotFound />} path="*" />
       </Route>
     </Routes>
   );

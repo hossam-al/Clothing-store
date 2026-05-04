@@ -1,3 +1,4 @@
+import MuiButton from "@mui/material/Button";
 import { useState } from "react";
 import { createAddress } from "../../api/addressApi";
 import { validateCoupon } from "../../api/couponApi";
@@ -157,9 +158,9 @@ function CheckoutPage() {
                 type="text"
                 value={formData.couponCode}
               />
-              <button onClick={handleValidateCoupon} type="button">
+              <MuiButton onClick={handleValidateCoupon} type="button">
                 Validate
-              </button>
+              </MuiButton>
             </div>
           </section>
 

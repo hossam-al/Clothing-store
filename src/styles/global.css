@@ -1,6 +1,5 @@
 @import "./variables.css";
 @import "swiper/css";
-@import "swiper/css/navigation";
 @import "swiper/css/pagination";
 
 * {
@@ -29,9 +28,10 @@ input {
   font: inherit;
 }
 
-.swiper-button-prev,
-.swiper-button-next {
-  color: var(--color-primary);
+.MuiButton-root {
+  font-family: inherit !important;
+  min-width: 0 !important;
+  text-transform: none !important;
 }
 
 .swiper-pagination-bullet-active {

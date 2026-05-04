@@ -8,6 +8,56 @@ import { mockBrands } from "../../data/mockBrands";
 import { latestOffers, mostRequested } from "../../data/mockProducts";
 import "../../styles/global.css";
 import styles from "./HomePage.module.css";
+import { FaHeadset, FaShieldHalved, FaTruckFast, FaWallet } from "react-icons/fa6";
+import { Navigation, Pagination } from "swiper/modules";
+import { Swiper, SwiperSlide } from "swiper/react";
+
+const serviceHighlights = [
+  {
+    icon: FaShieldHalved,
+    title: "Product Guarantee",
+    text: "Quality checked pieces with easy return options.",
+  },
+  {
+    icon: FaTruckFast,
+    title: "Fast Shipping",
+    text: "Quick delivery so your fit lands without the wait.",
+  },
+  {
+    icon: FaWallet,
+    title: "Secure Payment",
+    text: "Safe checkout with trusted payment methods.",
+  },
+  {
+    icon: FaHeadset,
+    title: "Support",
+    text: "Help with orders, sizing, and returns whenever needed.",
+  },
+];
+
+function ProductSlider({ products }) {
+  return (
+    <Swiper
+      breakpoints={{
+        0: { slidesPerView: 1.08, spaceBetween: 14 },
+        576: { slidesPerView: 2, spaceBetween: 16 },
+        992: { slidesPerView: 3, spaceBetween: 18 },
+        1200: { slidesPerView: 4, spaceBetween: 18 },
+      }}
+      className={styles.productSlider}
+      modules={[Navigation, Pagination]}
+      navigation
+      pagination={{ clickable: true }}
+      slidesPerGroup={1}
+    >
+      {products.map((product) => (
+        <SwiperSlide className={styles.productSlide} key={product.id}>
+          <ProductCard product={product} />
+        </SwiperSlide>
+      ))}
+    </Swiper>
+  );
+}
 
 function HomePage() {
   return (
@@ -50,11 +100,7 @@ function HomePage() {
               text="Streetwear offers with real wardrobe value."
               title="Latest Offers"
             />
-            <div className={styles.productGrid}>
-              {latestOffers.map((product) => (
-                <ProductCard key={product.id} product={product} />
-              ))}
-            </div>
+            <ProductSlider products={latestOffers} />
           </div>
         </section>
 
@@ -73,10 +119,28 @@ function HomePage() {
               text="The fits customers keep coming back for."
               title="Most Requested"
             />
-            <div className={styles.productGrid}>
-              {mostRequested.map((product) => (
-                <ProductCard key={product.id} product={product} />
-              ))}
+            <ProductSlider products={mostRequested} />
+          </div>
+        </section>
+
+        <section className={styles.serviceSection}>
+          <div className="container">
+            <div className={styles.serviceGrid}>
+              {serviceHighlights.map((item) => {
+                const Icon = item.icon;
+
+                return (
+                  <article className={styles.serviceCard} key={item.title}>
+                    <span>
+                      <Icon />
+                    </span>
+                    <div>
+                      <h2>{item.title}</h2>
+                      <p>{item.text}</p>
+                    </div>
+                  </article>
+                );
+              })}
             </div>
           </div>
         </section>

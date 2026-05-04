@@ -1,3 +1,4 @@
+import MuiButton from "@mui/material/Button";
 import { useEffect, useState } from "react";
 import { getCart, removeFromCart, updateCartItem } from "../../api/cartApi";
 import Button from "../../components/Button/Button";
@@ -98,22 +99,22 @@ function CartPage() {
                   <h2>{item.name}</h2>
                   <p>{item.category}</p>
                   <div className={styles.quantity}>
-                    <button
+                    <MuiButton
                       onClick={() => handleQuantityChange(item.id, item.quantity - 1)}
                       type="button"
                     >
                       -
-                    </button>
+                    </MuiButton>
                     <span>{item.quantity}</span>
-                    <button
+                    <MuiButton
                       onClick={() => handleQuantityChange(item.id, item.quantity + 1)}
                       type="button"
                     >
                       +
-                    </button>
-                    <button onClick={() => handleRemove(item.id)} type="button">
+                    </MuiButton>
+                    <MuiButton onClick={() => handleRemove(item.id)} type="button">
                       Remove
-                    </button>
+                    </MuiButton>
                   </div>
                 </div>
                 <strong>${Number(item.price || 0) * Number(item.quantity || 1)}</strong>
