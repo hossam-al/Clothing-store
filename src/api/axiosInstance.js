@@ -1,4 +1,5 @@
 import axios from "axios";
+import { clearAuthSession } from "../utils/authStorage";
 
 const axiosInstance = axios.create({
   baseURL:
@@ -22,7 +23,14 @@ axiosInstance.interceptors.request.use((config) => {
 
 axiosInstance.interceptors.response.use(
   (response) => response,
-  (error) => Promise.reject(error),
+  (error) => {
+    if (error?.response?.status === 401) {
+      clearAuthSession();
+      window.dispatchEvent(new Event("auth-changed"));
+    }
+
+    return Promise.reject(error);
+  },
 );
 
 export default axiosInstance;

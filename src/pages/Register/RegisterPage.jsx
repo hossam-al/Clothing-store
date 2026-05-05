@@ -1,12 +1,13 @@
 import { useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, Navigate, useNavigate } from "react-router-dom";
 import { register } from "../../api/authApi";
 import Button from "../../components/Button/Button";
-import { saveAuthSession } from "../../utils/authStorage";
+import { useAuth } from "../../context/authContextValue";
 import styles from "./RegisterPage.module.css";
 
 function RegisterPage() {
   const navigate = useNavigate();
+  const { isAuthenticated, setAuthSession } = useAuth();
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -27,7 +28,7 @@ function RegisterPage() {
 
     try {
       const response = await register(formData);
-      saveAuthSession(response);
+      setAuthSession(response);
       setMessage("Account created successfully.");
       navigate("/profile");
     } catch (error) {
@@ -38,6 +39,10 @@ function RegisterPage() {
       setIsSubmitting(false);
     }
   };
+
+  if (isAuthenticated) {
+    return <Navigate replace to="/profile" />;
+  }
 
   return (
     <main className={styles.page}>

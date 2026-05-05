@@ -31,3 +31,23 @@ export function saveAuthSession(response) {
 
   return { token, user };
 }
+
+export function getStoredAuthSession() {
+  let user;
+
+  try {
+    user = JSON.parse(localStorage.getItem("auth_user")) || null;
+  } catch {
+    user = null;
+  }
+
+  return {
+    token: localStorage.getItem("auth_token") || "",
+    user,
+  };
+}
+
+export function clearAuthSession() {
+  localStorage.removeItem("auth_token");
+  localStorage.removeItem("auth_user");
+}

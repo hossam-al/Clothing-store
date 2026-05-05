@@ -10,6 +10,7 @@ import ProfilePage from "../pages/Profile/ProfilePage";
 import RegisterPage from "../pages/Register/RegisterPage";
 import WishlistPage from "../pages/Wishlist/WishlistPage";
 import MainLayout from "../layouts/MainLayout";
+import ProtectedRoute from "../components/ProtectedRoute/ProtectedRoute";
 
 function AppRoutes() {
   return (
@@ -20,11 +21,32 @@ function AppRoutes() {
         <Route element={<ProductDetailsPage />} path="/products/:id" />
         <Route element={<CartPage />} path="/cart" />
         <Route element={<WishlistPage />} path="/wishlist" />
-        <Route element={<CheckoutPage />} path="/checkout" />
+        <Route
+          element={
+            <ProtectedRoute>
+              <CheckoutPage />
+            </ProtectedRoute>
+          }
+          path="/checkout"
+        />
         <Route element={<LoginPage />} path="/login" />
         <Route element={<RegisterPage />} path="/register" />
-        <Route element={<OrdersPage />} path="/orders" />
-        <Route element={<ProfilePage />} path="/profile" />
+        <Route
+          element={
+            <ProtectedRoute>
+              <OrdersPage />
+            </ProtectedRoute>
+          }
+          path="/orders"
+        />
+        <Route
+          element={
+            <ProtectedRoute>
+              <ProfilePage />
+            </ProtectedRoute>
+          }
+          path="/profile"
+        />
         <Route element={<HomePage />} path="*" />
       </Route>
     </Routes>

@@ -1,18 +1,12 @@
-import { useMemo } from "react";
 import { useNavigate } from "react-router-dom";
 import { logout } from "../../api/authApi";
 import Button from "../../components/Button/Button";
+import { useAuth } from "../../context/authContextValue";
 import styles from "./ProfilePage.module.css";
 
 function ProfilePage() {
   const navigate = useNavigate();
-  const user = useMemo(() => {
-    try {
-      return JSON.parse(localStorage.getItem("auth_user")) || null;
-    } catch {
-      return null;
-    }
-  }, []);
+  const { clearAuth, user } = useAuth();
 
   const handleLogout = async () => {
     try {
@@ -20,8 +14,7 @@ function ProfilePage() {
     } catch {
       // Session is cleared locally even if the token is already invalid.
     } finally {
-      localStorage.removeItem("auth_token");
-      localStorage.removeItem("auth_user");
+      clearAuth();
       navigate("/login");
     }
   };
