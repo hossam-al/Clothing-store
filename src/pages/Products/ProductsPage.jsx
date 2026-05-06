@@ -1,3 +1,4 @@
+import MuiButton from "@mui/material/Button";
 import { useEffect, useMemo, useState } from "react";
 import { getProducts } from "../../api/productApi";
 import ProductCard from "../../components/ProductCard/ProductCard";
@@ -169,22 +170,22 @@ function ProductsPage() {
                   />{" "}
                   $100+
                 </label>
-                <button
+                <MuiButton
                   className={styles.clearButton}
                   onClick={() => updateFilters({ min_price: "", max_price: "" })}
                   type="button"
                 >
                   Clear price
-                </button>
+                </MuiButton>
               </div>
 
               <div className={styles.filterGroup}>
                 <h3>Size</h3>
                 <div className={styles.chips}>
                   {filters.sizes.map((item) => (
-                    <button key={item} type="button">
+                    <MuiButton key={item} type="button">
                       {item}
-                    </button>
+                    </MuiButton>
                   ))}
                 </div>
               </div>
@@ -227,7 +228,7 @@ function ProductsPage() {
               </div>
 
               <div className={styles.pagination}>
-                <button
+                <MuiButton
                   disabled={filtersState.page <= 1}
                   onClick={() =>
                     setFiltersState((current) => ({
@@ -238,11 +239,11 @@ function ProductsPage() {
                   type="button"
                 >
                   Prev
-                </button>
-                <button className={styles.current} type="button">
+                </MuiButton>
+                <MuiButton className={styles.current} type="button">
                   {meta?.current_page || filtersState.page}
-                </button>
-                <button
+                </MuiButton>
+                <MuiButton
                   disabled={meta ? filtersState.page >= meta.last_page : true}
                   onClick={() =>
                     setFiltersState((current) => ({
@@ -253,7 +254,7 @@ function ProductsPage() {
                   type="button"
                 >
                   Next
-                </button>
+                </MuiButton>
               </div>
             </div>
           </div>

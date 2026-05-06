@@ -1,3 +1,4 @@
+import MuiButton from "@mui/material/Button";
 import { NavLink, Link } from "react-router-dom";
 import styles from "./Navbar.module.css";
 import { useEffect, useState } from "react";
@@ -49,7 +50,7 @@ function Navbar() {
           STITCH<span>CTRL</span>
         </Link>
 
-        <button
+        <MuiButton
           aria-controls="mainNavbar"
           aria-expanded="false"
           aria-label="Toggle navigation"
@@ -59,7 +60,7 @@ function Navbar() {
           type="button"
         >
           <span className="navbar-toggler-icon"></span>
-        </button>
+        </MuiButton>
 
         <div className="collapse navbar-collapse" id="mainNavbar">
           <ul className={`navbar-nav mx-auto ${styles.links}`}>

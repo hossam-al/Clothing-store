@@ -29,6 +29,8 @@ export function saveAuthSession(response) {
     localStorage.setItem("auth_user", JSON.stringify(user));
   }
 
+  window.dispatchEvent(new Event("auth-updated"));
+
   return { token, user };
 }
 

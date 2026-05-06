@@ -14,6 +14,10 @@
   padding: 0.5rem 0 clamp(2.4rem, 6vw, 5rem);
 }
 
+.serviceSection {
+  padding: 0 0 clamp(2.4rem, 6vw, 5rem);
+}
+
 .brandGrid {
   display: grid;
   gap: 1rem;
@@ -26,10 +30,98 @@
   grid-template-columns: repeat(4, minmax(0, 1fr));
 }
 
+.productSlider {
+  padding: 0.25rem 0.2rem 2.8rem;
+}
+
+.productSlide {
+  height: auto;
+}
+
+.productSlide > * {
+  height: 100%;
+}
+
+.productSlider :global(.swiper-button-prev),
+.productSlider :global(.swiper-button-next) {
+  background: var(--color-primary);
+  border-radius: 999px;
+  box-shadow: var(--shadow-soft);
+  color: #ffffff;
+  height: 2.65rem;
+  top: 42%;
+  width: 2.65rem;
+}
+
+.productSlider :global(.swiper-button-prev::after),
+.productSlider :global(.swiper-button-next::after) {
+  font-size: 0.9rem;
+  font-weight: 900;
+}
+
+.productSlider :global(.swiper-button-disabled) {
+  opacity: 0.25;
+}
+
+.productSlider :global(.swiper-pagination-bullet-active) {
+  background: var(--color-highlight-orange);
+}
+
+.serviceGrid {
+  background: var(--color-primary);
+  border-radius: 8px;
+  box-shadow: var(--shadow-strong);
+  color: #ffffff;
+  display: grid;
+  gap: 1px;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  overflow: hidden;
+}
+
+.serviceCard {
+  align-items: flex-start;
+  background: rgba(255, 255, 255, 0.06);
+  display: flex;
+  gap: 0.85rem;
+  min-height: 8rem;
+  padding: 1.15rem;
+}
+
+.serviceCard span {
+  align-items: center;
+  background: rgba(249, 115, 22, 0.16);
+  border-radius: 8px;
+  color: var(--color-highlight-orange);
+  display: inline-flex;
+  flex: 0 0 auto;
+  font-size: 1.2rem;
+  height: 2.8rem;
+  justify-content: center;
+  width: 2.8rem;
+}
+
+.serviceCard h2 {
+  font-size: 1rem;
+  font-weight: 900;
+  margin: 0 0 0.3rem;
+}
+
+.serviceCard p {
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 0.88rem;
+  font-weight: 700;
+  line-height: 1.6;
+  margin: 0;
+}
+
 @media (max-width: 1199px) {
   .brandGrid,
   .productGrid {
     grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .serviceGrid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 }
 
@@ -45,8 +137,30 @@
     padding: 2rem 0;
   }
 
-  .brandGrid,
+  .brandGrid {
+    gap: 0.75rem;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
   .productGrid {
     grid-template-columns: 1fr;
+  }
+
+  .productSlider {
+    margin-right: -1rem;
+    padding-bottom: 2.35rem;
+  }
+
+  .productSlider :global(.swiper-button-prev),
+  .productSlider :global(.swiper-button-next) {
+    display: none;
+  }
+
+  .serviceGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .serviceCard {
+    min-height: auto;
   }
 }

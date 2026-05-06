@@ -9,8 +9,8 @@ import ProductsPage from "../pages/Products/ProductsPage";
 import ProfilePage from "../pages/Profile/ProfilePage";
 import RegisterPage from "../pages/Register/RegisterPage";
 import WishlistPage from "../pages/Wishlist/WishlistPage";
-import MainLayout from "../layouts/MainLayout";
 import ProtectedRoute from "../components/ProtectedRoute/ProtectedRoute";
+import MainLayout from "../layouts/MainLayout";
 
 function AppRoutes() {
   return (
@@ -31,22 +31,8 @@ function AppRoutes() {
         />
         <Route element={<LoginPage />} path="/login" />
         <Route element={<RegisterPage />} path="/register" />
-        <Route
-          element={
-            <ProtectedRoute>
-              <OrdersPage />
-            </ProtectedRoute>
-          }
-          path="/orders"
-        />
-        <Route
-          element={
-            <ProtectedRoute>
-              <ProfilePage />
-            </ProtectedRoute>
-          }
-          path="/profile"
-        />
+        <Route element={<OrdersPage />} path="/orders" />
+        <Route element={<ProfilePage />} path="/profile" />
         <Route element={<HomePage />} path="*" />
       </Route>
     </Routes>
